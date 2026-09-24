@@ -4,7 +4,7 @@
   become: true
   tasks:
 
-  - name: install apache2 & php package
+  - name: update repos install apache2 & php package
     apt:
       name:
       - apache2
