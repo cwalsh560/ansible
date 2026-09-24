@@ -1,0 +1,51 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: install updates Ubuntu
+    apt:
+      update_cache: yes
+      upgrade: dist
+    when : ansible_facts["distribution"] == 'Ubuntu'
+  
+  - name: install updates Debian
+    apt:
+      update_cache: yes
+      upgrade: dist
+    when : ansible_facts["distribution"] == 'Debian'
+  
+- hosts: web_server
+  become: true
+  tasks:
+
+  - name: install apache & php
+    apt:
+      name:
+      - apache2
+      - libapache2-mod-php
+      state: latest
+
+- hosts: db_server
+  become: true
+  tasks:
+
+  - name: install mariadb
+    apt:
+      name:
+      - mariadb-server
+      state: latest
+
+- hosts: file_server
+  become: true
+  tasks:
+  
+  - name: install samba
+    apt:
+      name:
+      - samba
+      state: latest
+
+
+ 
