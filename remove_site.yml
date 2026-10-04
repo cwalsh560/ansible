@@ -16,6 +16,17 @@
       upgrade: dist
     when : ansible_facts["distribution"] == 'Debian'
 
+- hosts: all
+  become: true
+  tasks:
+
+    - name: remove serveradmin users
+      user:
+        name: serveradmin
+        group: users
+        state: absent
+  
+
   
 - hosts: web_server
   become: true
