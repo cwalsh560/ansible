@@ -15,6 +15,15 @@
       update_cache: yes
       upgrade: dist
     when : ansible_facts["distribution"] == 'Debian'
+
+- hosts: all
+  become: true
+  tasks:
+
+    - name: create serveradmin users
+      user:
+        name: serveradmin
+        group: users
   
 - hosts: web_server
   become: true
